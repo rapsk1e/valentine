@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untukmu, Selamanya – Valentine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-start: #fdf4f8;
+            --bg-mid: #f9e8f0;
+            --bg-end: #f3d9e8;
+            --accent: #a1125e;
+            --text-dark: #3a1e2c;
+            --text-light: #5c3a4e;
+            --paper: #fffefb;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-mid), var(--bg-end));
+            min-height: 100vh;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .petals-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .petal {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle at 30% 30%, #ffb6c1, #ff85c0 50%, #e066a0 80%, transparent);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            opacity: 0.35;
+            animation: fall linear forwards;
+            transform-origin: center;
+            will-change: transform, opacity;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0.5; }
+            100% { transform: translateY(110vh) rotate(1080deg) translateX(30vw); opacity: 0; }
+        }
+
+        .container {
+            background: var(--paper);
+            border-radius: 28px;
+            box-shadow: 0 25px 70px rgba(161,18,94,0.12);
+            padding: 60px 45px;
+            max-width: 860px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity:0; transform: translateY(40px); }
+            to { opacity:1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+        }
+
+        .date {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 50px;
+        }
+
+        #message {
+            font-size: 1.38rem;
+            line-height: 1.95;
+            max-width: 720px;
+            margin: 0 auto 60px;
+            color: var(--text-dark);
+            white-space: pre-wrap;
+            text-align: left;
+            min-height: 200px;
+        }
+
+        .typed-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.3em;
+            background: var(--accent);
+            vertical-align: middle;
+            animation: blink 1.2s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 55% { opacity: 1; }
+            56%, 100% { opacity: 0; }
+        }
+
+        .photos-section {
+            display: none;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeInPhotos 2s forwards;
+            z-index: 2;
+        }
+
+        @keyframes fadeInPhotos {
+            to { opacity: 1; }
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+            justify-items: center;
+        }
+
+        .photo-card {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            padding: 14px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-12px) scale(1.04);
+            box-shadow: 0 25px 60px rgba(161,18,94,0.28);
+            border: 1px solid rgba(161,18,94,0.15);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 680px) {
+            .container { padding: 45px 30px; }
+            h1 { font-size: 3.2rem; }
+            #message { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="petals-container" id="petals"></div>
+
+    <div class="container">
+        <h1>To the One My Heart Calls Home</h1>
+        <div class="date">14 Februari 2026</div>
+
+        <div id="message"></div>
+
+        <div class="photos-section" id="photosSection">
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="https://i.imgur.com/5h90YOJ.jpg" alt="Kenangan kita 1">
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.imgur.com/llFlfy9.jpg" alt="Kenangan kita 2">
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.imgur.com/GTL3HQX.jpg" alt="Kenangan kita 3">
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.imgur.com/14CYHCu.jpg" alt="Kenangan kita 4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const messageElement = document.getElementById('message');
+        const photosSection = document.getElementById('photosSection');
+
+        const fullMessage = `Hii Sayangku, Lucuku, Semestaku,\n\nTiap kali appi bangun, hal pertama yang terlintas di kepala Appi ya senyumnya Manda sayang. Manda jadi alasan hari-hari Appi bisa jadi lebih bermakna.\n\nTerima kasih karna udah memilih Appi, udah bertahan, dan udah mencintai Appi dengan segala kekurangan yang ada.\n\nDi hari Valentine ini, Appi cuma pengen Manda tau kalau Appi mencintai Manda lebih dalam dari yang apa yang bisa Appi ungkapin dengan kata-kata.\n\nForever Yours,\nAppi imup 💞`;
+
+        let charIndex = 0;
+        const typingSpeed = 70;
+
+        function typeNextChar() {
+            if (charIndex < fullMessage.length) {
+                messageElement.innerHTML += fullMessage.charAt(charIndex);
+                charIndex++;
+
+                messageElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+                setTimeout(typeNextChar, typingSpeed);
+            } else {
+                document.querySelector('.typed-cursor')?.remove();
+                messageElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+                setTimeout(() => {
+                    photosSection.style.display = 'block';
+                    photosSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 1500);
+            }
+        }
+
+        setTimeout(() => {
+            messageElement.innerHTML = '';
+            typeNextChar();
+        }, 800);
+
+        messageElement.insertAdjacentHTML('beforeend', '<span class="typed-cursor"></span>');
+
+        const petalsContainer = document.getElementById('petals');
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+
+            const size = Math.random() * 12 + 10;
+            petal.style.width = size + 'px';
+            petal.style.height = size + 'px';
+
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-20px';
+
+            const duration = Math.random() * 20 + 18;
+            petal.style.animationDuration = duration + 's';
+            petal.style.animationDelay = Math.random() * 8 + 's';
+
+            petal.style.opacity = Math.random() * 0.25 + 0.2;
+            petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            petalsContainer.appendChild(petal);
+
+            setTimeout(() => petal.remove(), duration * 1000 + 2000);
+        }
+
+        setInterval(createPetal, 1200);
+
+        for (let i = 0; i < 12; i++) {
+            setTimeout(createPetal, i * 800);
+        }
+    </script>
+</body>
+</html>
